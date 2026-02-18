@@ -171,11 +171,12 @@ File size limits
 
 
 
-```bash
+```
 ⭐ Conclusion
 
 DermaCarePro demonstrates an end-to-end AI healthcare application:
 
+```
 Model Training 
 Backend Integration
 Database Management
