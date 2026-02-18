@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Last Activity - DermaCare{% endblock %}
+
+{% block content %}
+<h2>Last Activity Details</h2>
+<p><strong>Activity Date:</strong> {{ activity.timestamp }}</p>
+<p><strong>Recommended Disease:</strong> {{ activity.disease }}</p>
+<p><strong>Accuracy Score:</strong> {{ activity.accuracy }}</p>
+<p><strong>Recommended Products:</strong> {{ activity.recommended_solution }}</p>
+<p><strong>Uploaded Image:</strong></p>
+<img src="{{ url_for('static', filename='uploads/' + activity.image_filename) }}" alt="Uploaded Image" class="img-thumbnail">
+<p><strong>Doctor:</strong> {{ activity.doctor.name }}</p>
+<p><strong>Doctor Address:</strong> {{ activity.doctor.address }}</p>
+{% endblock %}

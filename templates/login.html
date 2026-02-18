@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login - DermaCare{% endblock %}
+
+{% block content %}
+<h2>Login To Continue</h2>
+<form method="POST">
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+<div class="form-links">
+    <a href="{{ url_for('forgot_password') }}" class="btn-link">Forgot Password?</a>
+    <a href="{{ url_for('signup') }}" class="btn-link">Register</a>
+</div>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}

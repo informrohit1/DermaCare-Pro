@@ -1,0 +1,14 @@
+Flask
+Flask-Login
+Flask-WTF
+Flask-SQLAlchemy
+Flask-Migrate
+PyMySQL
+Werkzeug
+Pillow
+torch
+torchvision
+pandas
+requests
+gunicorn
+

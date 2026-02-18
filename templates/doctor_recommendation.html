@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Recommendations</title>
+</head>
+<body>
+    <h2>Recommended Doctors Near You</h2>
+    <ul>
+        {% for doctor in doctors %}
+            <li>
+                <h3>{{ doctor.name }}</h3>
+                <p>{{ doctor.address }}</p>
+                <button onclick="saveDoctor({{ doctor.id }})">Save Doctor</button>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

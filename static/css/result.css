@@ -1,0 +1,67 @@
+/* result.css */
+
+/* General Reset and Body Styling */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fcfe;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container,
+.row {
+  padding: 20px;
+}
+
+/* Headings */
+h4 {
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+/* Analysis Section Styling */
+.col-md-6 {
+  margin-bottom: 2rem;
+}
+
+.analysis-image {
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text and Labels */
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+p strong {
+  color: #444;
+}
+
+/* Lists for Doctors and Products */
+ul.list-group {
+  padding-left: 0;
+}
+.list-group-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  transition: background 0.2s ease;
+}
+.list-group-item:hover {
+  background-color: #f1f9ff;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}

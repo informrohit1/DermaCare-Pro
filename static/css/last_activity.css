@@ -1,0 +1,32 @@
+/* last_activity.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafd;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+p strong {
+    color: #444;
+}
+
+.img-thumbnail {
+    display: block;
+    margin: 0 auto 15px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    max-width: 300px;
+    height: auto;
+}

@@ -1,0 +1,9 @@
+*.pth
+__pycache__/
+*.pyc
+.env
+HAM/
+*.csv
+static/uploads/
+.idea/
+dermacarepro/

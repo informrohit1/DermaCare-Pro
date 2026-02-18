@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Products</title>
+</head>
+<body>
+    <h2>Recommended Skin Products</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <h3>{{ product.name }}</h3>
+                <a href="{{ product.link }}" target="_blank">Product Link</a>
+                <button onclick="saveProduct({{ product.id }})">Save Product</button>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

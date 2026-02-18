@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+
+{% block title %}Profile - DermaCare{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+  <h2>Your Profile</h2>
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Age:</strong> {{ user.age }}</p>
+  <p><strong>Weight:</strong> {{ user.weight }}</p>
+  <p><strong>Date of Birth:</strong> {{ user.dob }}</p>
+  <p><strong>Blood Group:</strong> {{ user.blood_group }}</p>
+  <p><strong>Location:</strong> {{ user.location }}</p>
+
+  <h3>Last Activity</h3>
+  <a href="{{ url_for('last_activity') }}">View Last Activity</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+{% endblock %}
+

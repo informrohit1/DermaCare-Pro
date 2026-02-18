@@ -1,0 +1,72 @@
+from flask import Blueprint, render_template, request, redirect, url_for, current_app
+from flask_login import login_required, current_user
+from werkzeug.utils import secure_filename
+import os, db, json
+from prediction import predict  # your existing prediction function
+
+main_bp = Blueprint('main', __name__)
+
+@main_bp.route('/dashboard', methods=['GET','POST'])
+@login_required
+def dashboard():
+    if request.method == 'POST':
+        # Save uploaded image
+        img = request.files['image']
+        fn  = secure_filename(img.filename)
+        folder = current_app.config['UPLOAD_FOLDER']
+        
+        # Create the upload folder if it does not exist
+        os.makedirs(folder, exist_ok=True)
+
+        path = os.path.join(folder, fn)
+        img.save(path)
+
+        # Collect additional information from the form
+        qdata = json.dumps({
+            'dryness': request.form['dryness'],
+            'itchiness': request.form['itchiness']
+        })
+
+        # Run prediction (this is assuming the function returns both the predicted disease and accuracy)
+        predicted_disease, accuracy = predict(path)  # Ensure the predict function returns the disease label and accuracy
+        accuracy = round(accuracy, 2)  # Just in case we need to round the accuracy
+
+        # Insert the activity record into the database
+        conn = db.get_db()
+        with conn.cursor() as cur:
+            cur.execute("""
+                INSERT INTO activity
+                (user_id, image_filename, question_data, disease, accuracy, recommended_solution)
+                VALUES (%s, %s, %s, %s, %s, %s)
+            """, (current_user.id, fn, qdata, predicted_disease, accuracy, ''))
+        conn.commit()
+
+        # Get the ID of the new activity record
+        activity_id = cur.lastrowid
+
+        # Redirect to the results page with the activity ID
+        return redirect(url_for('main.results', activity_id=activity_id))
+
+    return render_template('dashboard.html')
+
+@main_bp.route('/results/<int:activity_id>')
+@login_required
+def results(activity_id):
+    # Retrieve activity details from the database based on activity_id
+    conn = db.get_db()
+    with conn.cursor() as cur:
+        cur.execute("SELECT * FROM activity WHERE id=%s", (activity_id,))
+        activity = cur.fetchone()
+
+    # If no activity is found, redirect or handle error
+    if not activity:
+        return redirect(url_for('main.dashboard'))
+
+    # You can fetch doctor and product recommendations here (if needed)
+    nearby_doctors = []  # Placeholder, fetch from the database or external API
+    skin_products = []  # Placeholder, fetch from the database or external API
+
+    return render_template('results.html',
+                           activity=activity,
+                           nearby_doctors=nearby_doctors,
+                           skin_products=skin_products)

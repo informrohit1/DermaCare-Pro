@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}Results{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <h4>Analysis Result</h4>
+    <img src="{{ url_for('static', filename='uploads/' ~ activity.image_filename) }}" class="analysis-image mb-3">
+    <p><strong>Disease:</strong> {{ activity.disease }}</p>
+    <p><strong>Confidence:</strong> {{ (activity.accuracy * 100)|round(1) }}%</p>
+    <p><strong>Solution:</strong> {{ activity.recommended_solution if activity.recommended_solution else 'No solution available.' }}</p>
+  </div>
+  <div class="col-md-6">
+    <h4>Nearby Skin Doctors</h4>
+    <ul class="list-group">
+      {% if nearby_doctors %}
+        {% for doc in nearby_doctors %}
+          <li class="list-group-item">
+            <a href="#">{{ doc.name }}</a><br>
+            {{ doc.address }}
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="list-group-item">No doctors found.</li>
+      {% endif %}
+    </ul>
+    <h4 class="mt-4">Recommended Products</h4>
+    <ul class="list-group">
+      {% if skin_products %}
+        {% for prod in skin_products %}
+          <li class="list-group-item">
+            <a href="{{ prod.link }}" target="_blank">{{ prod.name }}</a>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="list-group-item">No products available.</li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
